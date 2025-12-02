@@ -5,7 +5,6 @@ import Swal from 'sweetalert2';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import useAuth from '../../hooks/useAuth';
 
-
 const SendParcel = () => {
     const {
         register,
@@ -21,7 +20,7 @@ const SendParcel = () => {
 
     const regions = [...new Set(regionsDuplicate)];
     // explore useMemo useCallback
-    const senderRegion =  ({ control, name: 'senderRegion' });
+    const senderRegion = useWatch({ control, name: 'senderRegion' });
     const receiverRegion = useWatch({ control, name: 'receiverRegion' })
 
     const districtsByRegion = (region) => {
@@ -85,9 +84,9 @@ const SendParcel = () => {
     }
 
     return (
-        <div className='p-10 mt-10'>
+        <div>
             <h2 className="text-5xl font-bold">Send A Parcel</h2>
-            <form onSubmit={handleSubmit(handleSendParcel)} className='mt-12 p-4 text-black  border rounded-2xl border-gray-400 p-5'>
+            <form onSubmit={handleSubmit(handleSendParcel)} className='mt-12 p-4 text-black'>
                 {/* parcel type*/}
                 <div>
                     <label className="label mr-4">
@@ -201,7 +200,7 @@ const SendParcel = () => {
 
                     </fieldset>
                 </div>
-                <input type="submit" className='btn w-full btn-primary mt-8 text-black' value="Send Parcel" />
+                <input type="submit" className='btn btn-primary mt-8 text-black' value="Send Parcel" />
             </form>
         </div>
     );
